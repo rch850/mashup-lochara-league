@@ -1,9 +1,13 @@
 import { Character } from "./character";
 import { characters } from "./data";
 
-export function query(latlng): Character[] {
+export interface QueryOptions {
+  count?: number
+}
+
+export function query(latlng, opts: QueryOptions = {}): Character[] {
   let chars = characters as Character[]
-  const includeIds = [3248, 2464]
+  const includeIds = [1249, 1402, 3248, 2464]
   chars = chars.filter(ch => {
     return includeIds.includes(ch.id)
   })
@@ -13,7 +17,7 @@ export function query(latlng): Character[] {
         ch.latitude, ch.longitude)
   })
   chars.sort((a, b) => a.distance - b.distance)
-  chars = chars.slice(0, 3)
+  chars = chars.slice(0, opts.count || 2)
 
   let totalDistance = chars.reduce((total, ch) => {
     return total + ch.distance

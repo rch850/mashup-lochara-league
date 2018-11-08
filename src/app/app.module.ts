@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from "@angular/forms";
 import { NgModule } from '@angular/core';
 import { ScrollToModule } from "@nicky-lenaers/ngx-scroll-to";
 
@@ -12,6 +13,7 @@ import { ResultComponent } from './result/result.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     ScrollToModule.forRoot()
   ],
   providers: [],

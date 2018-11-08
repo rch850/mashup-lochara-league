@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { query } from './lib';
 import { Character } from './character';
 import { ScrollToService } from '@nicky-lenaers/ngx-scroll-to';
@@ -11,6 +11,9 @@ declare var google: any;
   styleUrls: ['./app.component.styl']
 })
 export class AppComponent implements OnInit {
+
+  @Input() isChaosMode
+
   // 会場の緯度経度
   latlng = {
     lat: 36.109997,
@@ -65,7 +68,9 @@ export class AppComponent implements OnInit {
   }
 
   mashup() {
-    this.characters = query(this.latlng)
+    this.characters = query(this.latlng, {
+      count: this.isChaosMode ? 3 : 2
+    })
     this.scrollToService.scrollTo({
       target: 'result'
     })
