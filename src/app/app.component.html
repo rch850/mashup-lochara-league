@@ -1,0 +1,24 @@
+<div style="text-align:center">
+  <section class="hero is-primary">
+    <div class="hero-body">
+      <h1 class="title">Mashup ご当地キャラ League</h1>
+      <p>ご当地キャラを Mashup しちゃおう！</p>
+    </div>
+  </section>
+
+  <div id="map"></div>
+  <div>
+    <button class="button is-primary is-large" (click)="mashup()">Mashup!!</button>
+  </div>
+
+  <app-result id="result"
+      [characters]="characters">
+  </app-result>
+</div>
+
+<div>
+  使用API:
+  <ul>
+    <li><a href="http://localchara.jp/services/api">ご当地キャラカタログAPI</a></li>
+  </ul>
+</div>

@@ -1,0 +1,20 @@
+<div class="result">
+  <canvas #canvas></canvas>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ご当地キャラ</th>
+        <th>割合</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ch of characters">
+        <td>
+          <a href="{{ch.source}}" target="_blank">{{ ch.name }}</a>
+        </td>
+        <td>{{ ch.percentage }}%</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
