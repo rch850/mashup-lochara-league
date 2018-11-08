@@ -38,7 +38,37 @@ export class ResultComponent implements OnInit, AfterViewInit,
       this.morpherWeights = calcMorpherWeights(
         changes.characters.currentValue,
         morpherConfig.images)
-      this.morpher.set(this.morpherWeights, 1000)
+      let mw1 = this.calcWeightsForAnimation(this.morpherWeights, 0)
+      let mw2 = this.calcWeightsForAnimation(this.morpherWeights, 1)
+      let morphArray = [mw1, mw2, mw1, mw2, this.morpherWeights]
+
+      this.morpher.set(mw1)
+
+      setTimeout(() => {
+        this.morpher.animate(mw2, 300)
+        let interval
+        let setNext = () => {
+          this.morpher.animate(morphArray.shift(), 300)
+          if (morphArray.length === 0) {
+            clearInterval(interval)
+          }
+        }
+        interval = setInterval(setNext, 300)
+        }, 1000)
     }
+  }
+
+  calcWeightsForAnimation(weights: number[], index: number) {
+    let rv = weights.slice()
+    return rv.map(v => {
+      if (v > 0) {
+        if (index === 0) {
+          index--
+          return 1
+        }
+        index--
+      }
+      return 0
+    })
   }
 }
