@@ -40,7 +40,7 @@ export class ResultComponent implements OnInit, AfterViewInit,
         morpherConfig.images)
       let mw1 = this.calcWeightsForAnimation(this.morpherWeights, 0)
       let mw2 = this.calcWeightsForAnimation(this.morpherWeights, 1)
-      let morphArray = [mw1, mw2, mw1, mw2, this.morpherWeights]
+      let morphArray = [mw1, mw2, mw1, mw2, mw1, mw2, mw1, mw2, this.morpherWeights]
 
       this.morpher.set(mw1)
 
