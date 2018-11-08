@@ -52,6 +52,16 @@ export class AppComponent implements OnInit {
       position: this.latlng,
       title: 'Hello World!'
     });
+
+    // Click to move marker and update latlng
+    map.addListener('click', (event) => {
+      marker.setPosition(event.latLng)
+      map.panTo(event.latLng)
+      this.latlng = {
+        lat: event.latLng.lat(),
+        lng: event.latLng.lng()
+      }
+    })
   }
 
   mashup() {
