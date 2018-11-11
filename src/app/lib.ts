@@ -8,6 +8,9 @@ export interface QueryOptions {
 export function query(latlng, opts: QueryOptions = {}): Character[] {
   let chars = characters as Character[]
   const includeIds = [1249, 1402, 3248, 2464]
+  if (opts.count > 2) {
+    includeIds.push(4394)
+  }
   chars = chars.filter(ch => {
     return includeIds.includes(ch.id)
   })
