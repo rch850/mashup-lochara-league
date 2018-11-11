@@ -22,11 +22,12 @@ export function query(latlng, opts: QueryOptions = {}): Character[] {
   chars.sort((a, b) => a.distance - b.distance)
   chars = chars.slice(0, opts.count || 2)
 
-  let totalDistance = chars.reduce((total, ch) => {
-    return total + ch.distance
+  // キャラの割合は、距離の逆数に比例した数とする
+  let totalDistanceInv = chars.reduce((total, ch) => {
+    return total + 1 / ch.distance
   }, 0)
   chars.forEach(ch => {
-    ch.percentage = Math.floor(ch.distance / totalDistance * 100)
+    ch.percentage = Math.floor((1 / ch.distance) / totalDistanceInv * 100)
   })
 
   return chars
